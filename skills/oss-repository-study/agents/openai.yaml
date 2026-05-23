@@ -1,0 +1,4 @@
+interface:
+  display_name: "OSS Repository Study"
+  short_description: "Analyze OSS repositories and write grounded case-study notes."
+  default_prompt: "Study an OSS repository and summarize reusable practices, context-specific choices, tradeoffs, and follow-up questions."

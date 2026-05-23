@@ -21,7 +21,13 @@ Each study should distinguish between:
 
 - `case-studies/`: notes on individual OSS repositories
 - `notes/`: cross-project observations that emerge from multiple studies
+- `skills/`: reusable skills for studying repositories and writing notes
 - `templates/`: reusable templates for new repository studies
+
+## Skills
+
+- `oss-repository-study`: analyze an OSS or GitHub repository and write a
+  grounded case study under `case-studies/`
 
 ## Current Studies
 
