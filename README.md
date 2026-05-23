@@ -1,104 +1,62 @@
 # OSS Practices Notes
 
-Personal notes on OSS projects, engineering practices, and reusable patterns.
+Personal notes from exploring OSS repositories, engineering practices, project
+structures, and reusable patterns.
 
 ## Purpose
 
-This repository collects observations from exploring OSS projects. It is not
-intended to be a universal rulebook. The goal is to separate practices that are
-broadly useful from practices that depend on a project phase, team style,
-domain, toolchain, or the current behavior of a specific technology.
+This repository is a place to study OSS projects and extract practical lessons
+from them. It is not meant to be a universal best-practices guide. The goal is
+to keep observations grounded in specific repositories while gradually building
+more general notes across projects.
 
-## Case Study: Karpathy-Inspired Agent Guidelines
+Each study should distinguish between:
 
-Repository explored:
+- practices that seem broadly reusable
+- practices that depend on a project's phase, domain, team, or toolchain
+- practices that are useful only in the original repository's context
+- open questions worth revisiting after looking at more projects
 
-- `multica-ai/andrej-karpathy-skills`
+## Repository Structure
 
-This repository packages behavioral guidelines for coding agents across Claude
-Code, Cursor, and skill/plugin formats. Although the subject is AI coding
-agents, some of its ideas generalize to OSS maintenance and engineering
-practice:
+- `case-studies/`: notes on individual OSS repositories
+- `notes/`: cross-project observations that emerge from multiple studies
+- `templates/`: reusable templates for new repository studies
 
-- surface assumptions instead of silently guessing
-- keep changes scoped
-- avoid over-engineering
-- verify the result with concrete checks
+## Current Studies
 
-These are especially valuable for existing codebases, where uncontrolled
-changes increase cognitive load, make the system harder to understand, and can
-expand the attack surface.
+- [Karpathy-inspired agent guidelines](case-studies/2026-05-23-karpathy-inspired-agent-guidelines.md)
 
-## Initial Takeaway
+## How To Add A Study
 
-The guidelines are useful, but conservative. They are strongest when applied to
-maintenance work or feature work in an existing codebase.
+1. Copy `templates/repository-study.md` into `case-studies/`.
+2. Name the file with a date and short repository slug.
+3. Keep repository-specific facts in the case study.
+4. Move repeated themes into `notes/` only after they appear across multiple
+   repositories or feel useful beyond a single project.
 
-For greenfield development, research prototypes, exploratory product work, or
-research-heavy OSS, the same rules may be too restrictive if applied as
-permanent project instructions. In those cases, phase-aware practices may work
-better.
+Suggested filename:
 
-## Minimal Always-On Practices
+```text
+case-studies/YYYY-MM-DD-owner-repo.md
+```
 
-These practices seem broadly useful across phases:
+## Study Lens
 
-- State assumptions when the request is ambiguous. Ask only when a wrong
-  assumption would be costly.
-- Keep changes scoped to the requested outcome.
-- Follow existing project patterns before introducing new abstractions,
-  dependencies, or styles.
-- Avoid speculative flexibility. Add only what the current request needs.
-- Verify the result with the smallest relevant check, and report what was
-  checked.
+When exploring a repository, useful questions include:
 
-## Phase-Aware Practices
-
-Instead of putting all rules into permanent project instructions or contribution
-guides, phase-specific practices may be better treated as temporary operating
-modes.
-
-### Exploration
-
-- Build the smallest runnable version that tests the main assumption.
-- Optimize for learning rather than completeness.
-- Mark throwaway code explicitly.
-
-### Foundation
-
-- Define core domain concepts and module boundaries early.
-- Choose one pattern for state, data access, errors, and configuration.
-- Avoid introducing multiple ways to do the same thing.
-
-### Feature Work
-
-- Add features in small vertical slices.
-- Reuse established local patterns before creating new abstractions.
-- Abstract only after a pattern repeats.
-
-### Hardening
-
-- Delete unused code, dependencies, routes, and configuration.
-- Validate external inputs at system boundaries.
-- Test core workflows and known failure modes.
-- Review permissions, secrets, network calls, file access, and integrations.
-
-### Maintenance
-
-- Keep changes scoped.
-- Avoid speculative flexibility.
-- Verify each change and report what was checked.
+- What problem does the project solve?
+- Who appears to be the intended user?
+- What is the project phase: exploration, foundation, feature growth,
+  hardening, or maintenance?
+- Which practices are encoded in docs, tests, tooling, CI, examples, or
+  contribution workflows?
+- Which practices are broadly reusable, and which are context-specific?
+- What tradeoffs does the project seem to make?
+- What would be risky to copy into another project without adaptation?
 
 ## Working Hypothesis
 
-For OSS exploration, the most useful setup may be:
-
-1. Keep a very small set of always-on principles.
-2. Treat phase-specific behavior as an explicit mode, not as permanent doctrine.
-3. Explicitly choose the current project or task phase when evaluating a
-   practice.
-4. Revisit the phase at major milestones, such as prototype completion, MVP
-   readiness, or pre-release hardening.
-
-This keeps practices useful without making early exploration unnecessarily
-rigid.
+Good OSS practice notes should preserve context. A pattern is more useful when
+the note explains where it worked, what constraints made it work, and where it
+might fail.
